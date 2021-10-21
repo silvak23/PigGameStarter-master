@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Tue Oct 19 17:31:53 PDT 2021
+0.baseType=DIRECTORY
+0.base=C\:\\Users\\kamal\\Documents\\School\\CS371\\Lab6\\PigGameStarter-master\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+0.path=classes.dex
+0.set=DEX
+count=1
