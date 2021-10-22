@@ -32,6 +32,8 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
     private TextView    messageTextView     = null;
     private ImageButton dieImageButton      = null;
     private Button      holdButton          = null;
+    private TextView    p0NameView          = null;
+    private TextView    p1NameView          = null;
 
     // the android activity that we are running
     private GameMainActivity myActivity;
@@ -66,15 +68,33 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
             flash(0xFFFF0000, 1);
             return;
         }
+
         if(playerNum == 1){
+            if(((PigGameState) info).getTurn() == 1){
+                playerScoreTextView.setTextColor(0xFFFF0099);
+                oppScoreTextView.setTextColor(0xFF000000);
+            }
+            else{
+                oppScoreTextView.setTextColor(0xFFFF0099);
+                playerScoreTextView.setTextColor(0xFF000000);
+            }
             playerScoreTextView.setText(((PigGameState) info).getP1Score() + "");
             oppScoreTextView.setText(((PigGameState) info).getP0Score() + "");
         }
         else{
+            if(((PigGameState) info).getTurn() == 0){
+                playerScoreTextView.setTextColor(0xFFFF0099);
+                oppScoreTextView.setTextColor(0xFF000000);
+            }
+            else{
+                oppScoreTextView.setTextColor(0xFFFF0099);
+                playerScoreTextView.setTextColor(0xFF000000);
+            }
             playerScoreTextView.setText(((PigGameState) info).getP0Score() + "");
             oppScoreTextView.setText(((PigGameState) info).getP1Score() + "");
         }
         turnTotalTextView.setText(((PigGameState) info).getRun() + "");
+        messageTextView.setText(((PigGameState) info).getAction());
         switch(((PigGameState) info).getDice()){
             case 1:
                 dieImageButton.setImageResource(R.drawable.face1);
@@ -139,11 +159,23 @@ public class PigHumanPlayer extends GameHumanPlayer implements OnClickListener {
         this.messageTextView     = (TextView)activity.findViewById(R.id.messageTextView);
         this.dieImageButton      = (ImageButton)activity.findViewById(R.id.dieButton);
         this.holdButton          = (Button)activity.findViewById(R.id.holdButton);
+        this.p0NameView          = (TextView)activity.findViewById(R.id.yourScoreText);
+        this.p1NameView          = (TextView)activity.findViewById(R.id.oppScoreText);
 
         //Listen for button presses
         dieImageButton.setOnClickListener(this);
         holdButton.setOnClickListener(this);
 
     }//setAsGui
+
+    /**
+     * perform any initialization that needs to be done after the player
+     * knows what their game-position and opponents' names are.
+     */
+    @Override
+    protected void initAfterReady() {
+        p0NameView.setText(allPlayerNames[0] + "'s Score:");
+        p1NameView.setText(allPlayerNames[1] + "'s Score:");
+    }
 
 }// class PigHumanPlayer

@@ -47,13 +47,19 @@ public class PigLocalGame extends LocalGame {
         int turn = official.getTurn();
         if(action instanceof PigHoldAction){
             if(turn == 1){
+                official.setAction(playerNames[turn] + " has added " + official.getRun() +
+                        " to their score. It is now " + playerNames[0] + "'s turn.");
                 official.setP1Score(official.getP1Score() + official.getRun());
                 official.setTurn(0);
             }
             else {
+                official.setAction(playerNames[turn] + " has added " + official.getRun() +
+                        " to their score.");
                 official.setP0Score(official.getP0Score() + official.getRun());
                 if (players.length > 1) {
                     official.setTurn(1);
+                    official.setAction(playerNames[turn] + " has added " + official.getRun() +
+                            " to their score. It is now " + playerNames[1] + "'s turn.");
                 }
             }
             official.setRun(0);
@@ -66,14 +72,27 @@ public class PigLocalGame extends LocalGame {
             Log.i("Rolled", " "+ official.getDice());
             if(official.getDice() != 1){
                 official.setRun(official.getRun() + official.getDice());
+                if(turn == 0) {
+                    official.setAction(playerNames[turn] + " has rolled a " + official.getDice() + ".");
+                }
+                else{
+                    official.setAction(playerNames[turn] + " has rolled a " + official.getDice() + ".");
+                }
             }
             else{
                 official.setRun(0);
                 if(turn == 1){
+                    official.setAction(playerNames[turn] + " has rolled a 1, losing everything! It is now " +
+                            playerNames[0] + "'s turn.");
                     official.setTurn(0);
                 }
                 else if (players.length > 1){
+                    official.setAction(playerNames[turn] + " has rolled a 1, losing everything! It is now " +
+                            playerNames[1] + "'s turn.");
                     official.setTurn(1);
+                }
+                else {
+                    official.setAction(playerNames[turn] + " has rolled a 1, losing everything!");
                 }
             }
             return true;

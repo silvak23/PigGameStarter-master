@@ -35,6 +35,7 @@ public class PigComputerPlayer extends GameComputerPlayer {
     protected void receiveInfo(GameInfo info) {
         PigGameState curr = new PigGameState((PigGameState) info);
         if (curr.getTurn() == playerNum){
+            sleep(2000);
             int rand;
             Random r = new Random();
             rand = r.nextInt(100);

@@ -6,6 +6,7 @@ public class PigGameState extends edu.up.cs301.game.infoMsg.GameState {
     private int p1Score;
     private int run;
     private int dice;
+    private String action;
 
     public PigGameState(){
         turn = 0;
@@ -13,6 +14,7 @@ public class PigGameState extends edu.up.cs301.game.infoMsg.GameState {
         p1Score = 0;
         run = 0;
         dice = 0;
+        action = "";
     }
 
     public PigGameState(PigGameState other){
@@ -21,6 +23,7 @@ public class PigGameState extends edu.up.cs301.game.infoMsg.GameState {
         p1Score = other.p1Score;
         run = other.run;
         dice = other.dice;
+        action = other.action;
     }
 
     /**
@@ -31,6 +34,7 @@ public class PigGameState extends edu.up.cs301.game.infoMsg.GameState {
     public int getP1Score(){ return p1Score; }
     public int getRun(){ return run; }
     public int getDice(){ return dice; }
+    public String getAction(){ return action; }
 
     /**
      * setters
@@ -40,4 +44,5 @@ public class PigGameState extends edu.up.cs301.game.infoMsg.GameState {
     public void setP1Score(int score){ p1Score = score; }
     public void setRun(int r){ run = r; }
     public void setDice(int d){ dice = d; }
+    public void setAction(String string){ action = string; }
 }
